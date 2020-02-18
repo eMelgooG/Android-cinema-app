@@ -10,6 +10,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentActivity;
+
+import android.renderscript.Sampler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -20,20 +22,18 @@ public class CinemaDetailsActivity extends FragmentActivity implements OnMapRead
     private Button button;
     private Cinema cinema;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cinema_details);
         Toolbar toolbar = findViewById(R.id.toolbar);
-
         Bundle bundle=getIntent().getExtras();
-
         if(bundle!=null){
             cinema=(Cinema)bundle.getSerializable("cinema");
             toolbar.setTitle(cinema.getName());
             addressText=findViewById(R.id.addressView);
             addressText.setText(cinema.getAddress());
-
             SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                     .findFragmentById(R.id.fragment);
             mapFragment.getMapAsync(this);

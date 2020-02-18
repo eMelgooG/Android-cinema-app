@@ -7,6 +7,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.Menu;
+import android.view.View;
+
+import com.example.cinemaapp.databinding.ActivityMainBinding;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,12 +20,16 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager myLayoutManager;
     private CinemaAdapter myCinemaAdapter;
 
+    private ActivityMainBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
+
+        setSupportActionBar(binding.toolbar);
 
         createCinemaList(cinemaList);
         myLayoutManager=new LinearLayoutManager(this);
